@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//this is an example of portal
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
+import AddUser from './components/Users/AddUser';
+import UserList from './components/Users/UserList';
 
 function App() {
+  const [usersList, setUserList] = useState([]);
+
+  const addUserHandler = (uName, uAge) => {
+    setUserList((prevUserList) => {
+      //add new user to existing list 
+      //spread operator
+      return [...prevUserList, {id: Math.random().toString(), name: uName, age: uAge }];
+    });
+
+  };
+  // '<>' will return no div so we will avoid "div soup" but project setup has to support it
+  //We can also use <React.Fragment>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <> 
+      <AddUser onAddUser={addUserHandler} />
+      <UserList users={usersList}/>
+    </>
   );
 }
 
